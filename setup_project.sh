@@ -30,4 +30,10 @@ Cleaning up..."
    exit 1
   }
 
-	
+echo " creating source files"
+
+cp "Downloads/attendance_checker.py" "$project_dir/"
+cp "Dowloads/assets.csv" "$project_dir/Helpers/"
+cp "Downloads/config.json" "$project_dir/Helpers/"
+touch "project_dir/reports/reports.log"
+
