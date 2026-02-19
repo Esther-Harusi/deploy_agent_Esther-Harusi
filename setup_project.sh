@@ -79,4 +79,10 @@ EOF
 
 echo "Current thresholds: Warning=75%, Failure=50%"
 read -p "Do you want to update attendance thresholds?(yes/no):" update_choice
+if [[ "$update_choice" == "yes" || "$update_choice" == "Yes" ]]; then
+  read  -p "Enter new Warning threshold (%):" Warning_value
+  read -p "Enter new Failure threshold (%):" Failure_value
+fi
+
+
 
