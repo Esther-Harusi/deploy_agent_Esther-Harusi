@@ -83,6 +83,11 @@ if [[ "$update_choice" == "yes" || "$update_choice" == "Yes" ]]; then
   read  -p "Enter new Warning threshold (%):" Warning_value
   read -p "Enter new Failure threshold (%):" Failure_value
 fi
+sed -i "s/\"warning\": [0-9]*/\"warning\": $Warning_value/" "$project_dir/Helpers/config.json"
 
-
+if grep -q "\"warning\": $warning_value" "$project_dir/Helpers/config.json"; then
+    echo " Success: The file was updated correctly."
+else
+    echo " Error: The update failed."
+fi
 
