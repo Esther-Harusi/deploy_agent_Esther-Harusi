@@ -76,3 +76,7 @@ cat > "$project_dir/Helpers/config.json" <<EOF
     "total_sessions": 15
 }
 EOF
+
+echo "Current thresholds: Warning=75%, Failure=50%"
+read -p "Do you want to update attendance thresholds?(yes/no):" update_choice
+
