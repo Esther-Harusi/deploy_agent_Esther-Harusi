@@ -32,7 +32,7 @@ trap cleanup_on_interruption SIGINT
 rmdir $project_dir/attendance_checker.py
 ls -R
 
-cat > "$project_dir/attendace_checker.py" <'EOF'
+cat > "$project_dir/attendace_checker.py" <<'EOF'
 import csv, json, os
 from datetime import datetime
 
@@ -60,5 +60,19 @@ def run_attendance_check():
                 print(f"Logged alert for {name}")
 
 if __name__ == "__main__": run_attendance_check()
+}
+EOF
+cat > "$project_dir/Helpers/assets.csv" <<EOF
+Email,Names,Attendance Count,Absence Count
+alice@example.com,Alice Johnson,14,1
+bob@example.com,Bob Smith,7,8
+charlie@example.com,Charlie Davis,4,11
+diana@example.com,Diana Prince,15,0
+EOF
+cat > "$project_dir/Helpers/config.json" <<EOF
+{
+    "thresholds": {"warning": 75, "failure": 50},
+    "run_mode": "live",
+    "total_sessions": 15
 }
 EOF
