@@ -15,25 +15,19 @@ else
         exit 1
 fi
     
-trap cleanup_on_cancellation SIGINT
-cleanup_on_cancellation() {
-      echo -e "\n\n\[!] Process cancelled!
-Cleaning up..."
+cleanup_on_interruption() {
+      echo -e "\n\n\[!] Process cancelled!Cleaning up"
    if [ -d "$project_dir" ]; then
            archive_name="${project_dir}_archive.tar.gz"
            echo "Archiving current state into $archives_name.."
            tar -czf "$archive_name" "$project_dir"
            echo "Deleting incomplete project directory"
            rm -rf "$project_dir"
-           echo "Cleaning complete"
+           echo "safe and clean exiting"
    fi
-   exit 1
-  }
+   exit 1  
+}
+trap cleanup_on_interruption SIGINT
 
-echo " creating source files"
-
-cp "Downloads/attendance_checker.py" "$project_dir/"
-cp "Dowloads/assets.csv" "$project_dir/Helpers/"
-cp "Downloads/config.json" "$project_dir/Helpers/"
-touch "project_dir/reports/reports.log"
+rmdir $project_dir/attendance_checker.py
 
