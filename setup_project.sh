@@ -14,5 +14,20 @@ else
         echo "python3 not found"
         exit 1
 fi
+    
+trap cleanup_on_cancellation SIGINT
+cleanup_on_cancellation() {
+      echo -e "\n\n\[!] Process cancelled!
+Cleaning up..."
+   if [ -d "$project_dir" ]; then
+           archive_name="${project_dir}_archive.tar.gz"
+           echo "Archiving current state into $archives_name.."
+           tar -czf "$archive_name" "$project_dir"
+           echo "Deleting incomplete project directory"
+           rm -rf "$project_dir"
+           echo "Cleaning complete"
+   fi
+   exit 1
+  }
 
 	
