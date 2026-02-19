@@ -30,4 +30,5 @@ cleanup_on_interruption() {
 trap cleanup_on_interruption SIGINT
 
 rmdir $project_dir/attendance_checker.py
+ls -R
 
